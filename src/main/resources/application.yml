@@ -4,3 +4,99 @@ server:
 spring:
   application:
     name: apigateway
+  cloud:
+    gateway:
+      default-filters:
+        - name: LoggingFilter
+          args:
+            baseMessage: Spring Cloud Gateway Logging Filter
+            preLogger: true
+            postLogger: true
+
+      routes:
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - Path=/auth/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/auth/(?<segment>.*), /$\{segment}
+        - id: member
+          uri: lb://MEMBER
+          predicates:
+            - Path=/member/members
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/member/(?<segment>.*), /$\{segment}
+        - id: member
+          uri: lb://MEMBER
+          predicates:
+            - Path=/member/**
+            - Method=GET,POST,PATCH,DELETE
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/member/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+            - CustomTokenFilter
+        - id: product
+          uri: lb://PRODUCT
+          predicates:
+            - Path=/product/**
+            - Method=GET,POST,PATCH,DELETE
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/product/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+            - CustomTokenFilter
+        - id: order
+          uri: lb://ORDER
+          predicates:
+            - Path=/order/**
+            - Method=GET,POST,PATCH,DELETE
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+            - CustomTokenFilter
+        - id: review
+          uri: lb://REVIEW
+          predicates:
+            - Path=/review/**
+            - Method=GET,POST,PATCH,DELETE
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/review/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+            - CustomTokenFilter
+        - id: chat
+          uri: lb://CHAT
+          predicates:
+            - Path=/chat/**
+            - Method=GET,POST,PATCH,DELETE
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/chat/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+            - CustomTokenFilter
+
+encrypt:
+  key-store:
+    location: file:///home/ubuntu/configfile/apiEncryptionKey.jks
+    password: test1234
+    alias: apiEncryptionKey
+
+token:
+  min_expiration_time: 3600000
+  max_expiration_time: 86400000
+  secret: '{cipher}AQDKFxedmeANfdFBnFAQOgFiK3MFZZTGnkPxHmoUOGbAIJ8JMqktFUffunj8We0HluP33QBVeEv9IuGnqPHzA8NBp/WbDsm9tov8PqG2YUtp5O69JRZHVDcLlRFE7C2IK4W873c4zo2wgnY5L8tfFz7HLY3STBzwMffns+Q44+B2nrHQt8B2CBj2r1bsW6SVP5QW9fzPDhWpxeBTgQRFI3WJLwrlXc/Z/BgkxBQIw/45UN0AyurqoXA/LupIJrLMCfMlrpJqOcZdbPHF9f+pY26QfnsjRJlLSSaWHudkJRZp4fi/9HRVhTThVTwSc3m4ojDXqoMpooHPnsOGyzSXniFmoaoWy72qFLW1BTIzHQ9f4jKLV+5owDklW4oFQAW40Wh0bK5A3GQ8yNUmjxvVGkc6'
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://43.200.203.135:8761/eureka
