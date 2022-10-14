@@ -83,7 +83,7 @@ spring:
 
 encrypt:
   key-store:
-    location: file:///home/ubuntu/configfile/apiEncryptionKey.jks
+    location: classpath:apiEncryptionKey.jks
     password: test1234
     alias: apiEncryptionKey
 
