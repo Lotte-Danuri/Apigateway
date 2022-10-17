@@ -9,10 +9,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.server.ServerWebExchange;
 
 @Component
 @Slf4j
+@CrossOrigin("*")
 public class CustomTokenFilter extends AbstractGatewayFilterFactory {
 
     Environment env;
