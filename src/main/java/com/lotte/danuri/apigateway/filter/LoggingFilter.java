@@ -29,13 +29,15 @@ public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Co
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 
-            log.info("LogginFilter baseMessage: {}", config.getBaseMessage());
+            log.info("LoggingFilter baseMessage: {}", config.getBaseMessage());
+            log.info("LoggingFilter Request Header: {}", request.getHeaders());
             if(config.isPreLogger()) {
                 log.info("Logging PRE Filter: requestId -> {}", request.getId());
             }
 
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
                 if(config.isPostLogger()) {
+                    log.info("LoggingFilter Response Header: {}", response.getHeaders());
                     log.info("Logging POST Filter: response code -> {}", response.getStatusCode());
                 }
             }));
