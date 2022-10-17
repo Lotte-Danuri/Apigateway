@@ -2,6 +2,7 @@ package com.lotte.danuri.apigateway.config;
 
 import java.util.function.Function;
 import javax.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.config.GlobalCorsProperties;
 import org.springframework.cloud.gateway.handler.FilteringWebHandler;
 import org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 @Configuration
+@Slf4j
 public class DisableCorsConfiguration implements WebFluxConfigurer {
 
     @Override
@@ -41,6 +43,7 @@ public class DisableCorsConfiguration implements WebFluxConfigurer {
             @Override
             @NotNull
             public Mono<Void> filter(@NotNull ServerWebExchange exchange, @NotNull WebFilterChain chain) {
+                log.info("Call DisableCorsConfiguration CorsWebFilter");
                 return chain.filter(exchange);
             }
         };
@@ -62,6 +65,7 @@ public class DisableCorsConfiguration implements WebFluxConfigurer {
             @Override
             @NotNull
             public Mono<Object> getHandler(@NotNull ServerWebExchange exchange) {
+                log.info("Call DisableCorsConfiguration NoCorsRoutePredicateHandlerMapping");
                 return getHandlerInternal(exchange).map(Function.identity());
             }
         };
