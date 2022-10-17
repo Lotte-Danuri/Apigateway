@@ -14,7 +14,6 @@ import org.springframework.web.server.ServerWebExchange;
 
 @Component
 @Slf4j
-@CrossOrigin("*")
 public class CustomTokenFilter extends AbstractGatewayFilterFactory {
 
     Environment env;

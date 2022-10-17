@@ -19,7 +19,6 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-@CrossOrigin("*")
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
     Environment env;
 
