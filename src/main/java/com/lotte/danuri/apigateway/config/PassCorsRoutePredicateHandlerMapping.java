@@ -7,9 +7,11 @@ import org.springframework.cloud.gateway.handler.FilteringWebHandler;
 import org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+@Component
 public class PassCorsRoutePredicateHandlerMapping extends RoutePredicateHandlerMapping {
 
     private static final Logger logger = LoggerFactory.getLogger(PassCorsRoutePredicateHandlerMapping.class);
