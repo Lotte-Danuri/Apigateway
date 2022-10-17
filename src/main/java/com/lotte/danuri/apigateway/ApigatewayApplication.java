@@ -1,6 +1,5 @@
 package com.lotte.danuri.apigateway;
 
-import com.lotte.danuri.apigateway.config.PassCorsRoutePredicateHandlerMapping;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.config.GlobalCorsProperties;
@@ -40,13 +39,5 @@ public class ApigatewayApplication {
 		return new CorsWebFilter(corsConfigurationSource());
 	}*/
 
-	@Bean
-	@Primary
-	public RoutePredicateHandlerMapping passCorsRoutePredicateHandlerMapping(
-		FilteringWebHandler webHandler, RouteLocator routeLocator,
-		GlobalCorsProperties globalCorsProperties, Environment environment) {
-		return new PassCorsRoutePredicateHandlerMapping(webHandler, routeLocator,
-			globalCorsProperties, environment);
-	}
 
 }
