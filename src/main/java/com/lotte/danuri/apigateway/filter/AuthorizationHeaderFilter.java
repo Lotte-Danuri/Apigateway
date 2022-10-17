@@ -43,7 +43,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             }
 
             if(!validateTokenExceptionExpiration(jwt)) {
-                return onError(exchange, "JWT Access Token is expired", HttpStatus.UNAUTHORIZED);
+                return onError(exchange, "JWT Access Token is expired", HttpStatus.FORBIDDEN);
             }
 
             return chain.filter(exchange);
