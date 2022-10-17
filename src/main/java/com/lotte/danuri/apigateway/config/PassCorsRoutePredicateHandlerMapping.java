@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-public class PassCorsRoutePredicateHandlerMapping extends RoutePredicateHandlerMapping {
+/*public class PassCorsRoutePredicateHandlerMapping extends RoutePredicateHandlerMapping {
 
     private static final Logger logger = LoggerFactory.getLogger(PassCorsRoutePredicateHandlerMapping.class);
 
@@ -29,4 +29,4 @@ public class PassCorsRoutePredicateHandlerMapping extends RoutePredicateHandlerM
             return handler;
         });
     }
-}
+}*/

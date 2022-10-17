@@ -21,10 +21,10 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilterChain;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import reactor.core.publisher.Mono;
 
 @Configuration
-@EnableWebFlux
 public class CorsGlobalConfiguration implements WebFluxConfigurer {
 
     @Override
