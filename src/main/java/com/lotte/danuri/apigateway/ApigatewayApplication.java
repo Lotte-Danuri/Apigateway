@@ -20,25 +20,6 @@ public class ApigatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApigatewayApplication.class, args);
-		System.out.println("m");
 	}
-
-	/*@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.addAllowedHeader("*");
-		corsConfiguration.addAllowedOrigin("*");
-		corsConfiguration.addAllowedMethod("*");
-		corsConfiguration.setAllowCredentials(true);
-		source.registerCorsConfiguration("/**", corsConfiguration);
-		return source;
-	}
-
-	@Bean
-	public CorsWebFilter corsWebFilter() {
-		return new CorsWebFilter(corsConfigurationSource());
-	}*/
-
 
 }

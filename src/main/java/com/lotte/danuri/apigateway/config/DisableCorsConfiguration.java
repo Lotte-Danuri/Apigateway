@@ -75,12 +75,6 @@ public class DisableCorsConfiguration implements WebFluxConfigurer {
         };
     }
 
-    /**
-     * HACK ALERT!!!!
-     * Spring WebFlux CORS logic is hard-coded, this is a low-level hack to bypass it.
-     * see {@link org.springframework.web.reactive.handler.AbstractHandlerMapping#getHandler}.
-     *
-     */
     @Bean
     @Primary
     public RoutePredicateHandlerMapping NoCorsRoutePredicateHandlerMapping(
