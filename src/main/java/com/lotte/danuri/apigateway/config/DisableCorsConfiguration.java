@@ -37,10 +37,9 @@ public class DisableCorsConfiguration implements WebFluxConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
             .allowCredentials(true)
-            .allowedOrigins("*")
+            .allowedOriginPatterns("*")
             .allowedHeaders("*")
-            .allowedMethods("*")
-            .exposedHeaders(HttpHeaders.SET_COOKIE);
+            .allowedMethods("*");
     }
 
     @Bean
@@ -56,7 +55,7 @@ public class DisableCorsConfiguration implements WebFluxConfigurer {
             ServerHttpResponse response = ctx.getResponse();
             HttpMethod requestMethod = requestHeaders.getAccessControlRequestMethod();
             HttpHeaders headers = response.getHeaders();
-            headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+            //headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
             headers.addAll(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, requestHeaders.getAccessControlRequestHeaders());
             if (requestMethod != null) {
                 headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, requestMethod.name());
